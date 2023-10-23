@@ -1,0 +1,80 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+  
+  @import url('https://fonts.googleapis.com/css2?family=Mooli&family=Press+Start+2P&display=swap');
+
+body {
+    background-color: #00ADEF; /* Celeste */
+    color: white;
+}
+
+h1 {
+    color: #FFF; /* Blanco */
+}
+
+/* Estilo para los enlaces (a) */
+a {
+    color: #00CCFF; /* Color azul neón para los enlaces */
+    text-decoration: none; /* Sin subrayado por defecto */
+    transition: color 0.3s; /* Transición de color suave */
+}
+
+a:hover {
+    color: #FF6600; /* Color naranja al pasar el ratón */
+}
+
+/* Estilo para los párrafos (p) */
+p {
+    font-size: 16px; /* Tamaño de fuente */
+    line-height: 1.5; /* Espaciado entre líneas */
+}
+
+/* Estilo para los encabezados (h1, h2, h3, h4, h5, h6) */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Press Start 2P', sans-serif; /* Fuente retro */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    letter-spacing: 2px; /* Espaciado entre letras */
+    text-shadow: 2px 2px 4px #000; /* Sombra de texto */
+}
+
+/* Estilo para los botones */
+button {
+    background-color: #FF6600; /* Naranja */
+    color: white;
+    border: 3px solid #00CCFF; /* Borde azul neón */
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', sans-serif; /* Fuente retro */
+    font-size: 16px; /* Tamaño de fuente */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    letter-spacing: 2px; /* Espaciado entre letras */
+    text-shadow: 2px 2px 4px #000; /* Sombra de texto */
+}
+
+button:hover {
+    background-color: #FF9900; /* Naranja más claro al pasar el ratón */
+    color: #00CCFF; /* Texto azul al pasar el ratón */
+}
+.pruebas {
+    display: inline-block; /* Para que se comporte como un bloque en línea */
+    padding: 10px 20px; /* Espaciado interno similar a un botón */
+    background-color: #FF6600; /* Fondo naranja similar a un botón */
+    color: white; /* Color de texto */
+    text-decoration: none; /* Sin subrayado por defecto */
+    transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
+
+    /* Estilos de fuente y sombra como en los 80s */
+    font-family: 'Press Start 2P', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.pruebas:hover {
+    background-color: #FF9900; /* Cambio de fondo al pasar el ratón a un tono naranja más claro */
+    color: #00CCFF; /* Cambio de color de texto al pasar el ratón a azul neón */
+}
