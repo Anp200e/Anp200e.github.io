@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <!--META-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Messi o No Messi?</title>
+  <meta name="description" content="¿Messi o No Messi? es un emocionante juego de adivinanzas que pondrá a prueba tus conocimientos sobre el famoso futbolista Lionel Messi. En este desafiante juego, te presentarán una serie de frases, y deberás decidir si se trata de frases sobre el jugador o si son de otro deportista."></meta>
+    <meta name="keywords" content="Lionel Messi, Fútbol, Juego de adivinanzas, Desafío, Preguntas, Carrera, Ícono del fútbol, Conocimientos deportivos, Frases, Deportistas famosos, Diversión, Sorpresas, Adivinanza, Test de conocimiento, Entretenimiento"></meta>
+    <meta name="robots" content="index, follow"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <meta http-equiv="content-language" content="es"></meta>
+    <meta http-equiv="refresh" content="5;URL=URL_de_redirección"></meta>
+    <meta name="author" content="Nahuel Pérez"></meta>
+    <meta name="revisit-after" content="7 days"></meta>
+    
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="imagenes.css" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mooli&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Mooli&family=Press+Start+2P&display=swap');
+</style>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    #question {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #result {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>¿Messi o No Messi?</h1>
+  <p>¿Es esta frase de Lionel Messi o de otro deportista famoso?</p>
+  
+  <div id="question"></div>
+  <button onclick="guess('Messi')">Messi</button>
+  <button onclick="guess('No Messi')">No Messi</button>
+  <div id="result"></div>
+  <!--recargar pagina-->
+  <button id="recargarPagina">REINICIAR JUEGO</button>
+  <!--imagenes-->
+  <img src="db7347692ba57194d0ff953243638d0b.jpg" alt="Imagen destacada" class="imagen-destacada" width="300" height="200">
+  <img src="49ba6cc67b2b37ec3a835fe088b5a55e.jpg" alt="Imagen destacada" class="imagen-destacada" width="300" height="200">
+  
+  <script>
+    const messiPhrases = [
+      "El día que no tenga objetivos ni sueños, dejaré de jugar al fútbol.",
+      "Siempre es difícil dejar atrás a tu familia y tus amigos para irte a otro país.",
+      "La verdad es que no me veo siendo entrenador después de mi carrera como jugador.",
+      "Nunca me canso de intentar mejorar.",
+      "Cada día trato de aprender algo nuevo.",
+      "No importa lo que pase, seguiré dando lo mejor de mí en el campo.",
+      "No me considero el mejor jugador del mundo. No me gusta hablar de mí mismo.",
+      "Es importante ser humilde y mantener los pies en la tierra.",
+      "La presión no me asusta; me motiva.",
+      "Disfruto cada momento que paso en el campo de juego.",
+      "El respeto se gana en el campo, no fuera de él.",
+      "La constancia y el trabajo duro son clave para el éxito.",
+      "No importa cuántos premios gane, siempre quiero mejorar.",
+      "La rivalidad con Cristiano Ronaldo me motivó a ser mejor.",
+      "Cada partido es una nueva oportunidad para demostrar lo que puedo hacer.",
+      "No importa cuántos goles marque, lo más importante es el éxito del equipo.",
+      "El fútbol es un deporte colectivo; siempre es mejor ganar juntos.",
+      "Mi infancia en Rosario fue fundamental para mi desarrollo como futbolista.",
+      "Nunca me he sentido presionado por las expectativas de los demás.",
+      "Mi estilo de juego se basa en la creatividad y la intuición.",
+      "Los elogios y las críticas van y vienen, pero yo sigo trabajando duro.",
+      "La paciencia es clave para superar momentos difíciles en el fútbol.",
+      "El éxito no se logra de la noche a la mañana; es un proceso.",
+      "Mi motivación es superarme a mí mismo en cada partido.",
+      "El Barcelona es mi casa, siempre lo será.",
+      "Cada partido es una oportunidad para hacer historia.",
+      "El fútbol es un lenguaje universal que une a las personas.",
+      "Nunca dejes de soñar, porque los sueños se pueden hacer realidad.",
+      "La vida me ha enseñado a ser resiliente y a seguir adelante.",
+      "La humildad es una virtud que valoro mucho.",
+      "Mi mayor satisfacción es ver feliz a mi familia.",
+      "El fútbol me ha dado muchas alegrías, pero también desafíos.",
+      "El trabajo en equipo es esencial para alcanzar el éxito.",
+      "El amor por el juego es lo que me impulsa a seguir adelante.",
+      "La constancia es la clave para convertirse en un gran jugador.",
+      "Siempre trato de ser un buen compañero dentro y fuera del campo.",
+      "El fútbol me ha permitido conocer el mundo y aprender de diferentes culturas.",
+      "La pasión por el fútbol es lo que me hace levantarme cada mañana.",
+      "Los momentos difíciles solo fortalecen mi determinación.",
+      "No importa dónde juegue, siempre daré todo por mi equipo.",
+      "La familia es el apoyo fundamental en mi vida.",
+      "Mi objetivo es ser recordado como un buen futbolista y una buena persona."
+    ];
+
+    const otherPhrases = [
+      "El dolor es temporal, pero la gloria es eterna.  ",
+      "Nunca he perdido un partido; solo he agotado el tiempo. ",
+      "El deporte no construye el carácter, lo revela. ",
+      "No puedes poner un límite a nada. Cuanto más sueñas, más lejos llegas. ",
+      "Si te caes siete veces, levántate ocho. ",
+      "El trabajo duro supera al talento cuando el talento no trabaja duro. ",
+      "El deporte no se trata de ser mejor que alguien más, se trata de ser mejor de lo que eras ayer.",
+      "El dolor que sientes hoy será la fuerza que sientas mañana. ",
+      "El deporte no construye el carácter, lo revela. ",
+      "El sudor es la colcha de la victoria. ",
+      "El éxito no es la clave de la felicidad. La felicidad es la clave del éxito.",
+      "El verdadero campeón cree en sí mismo cuando nadie más lo hace. ",
+      "La victoria es mucho más dulce cuando sabes que has tenido que trabajar duro para lograrla. ",
+      "El deporte tiene el poder de cambiar el mundo. ",
+      "En el deporte, siempre tienes dos opciones: seguir adelante o rendirte. Elige seguir adelante. ",
+      "El deporte no se trata de ser mejor que alguien más, se trata de ser mejor de lo que eras ayer. ",
+      "El esfuerzo constante y la determinación son las claves del éxito. ",
+      "La excelencia no es un acto, es un hábito. ",
+      "El deporte es una de las mejores escuelas de la vida. ",
+      "El deporte es la única verdad. ",
+      "El carácter, la inteligencia y el espíritu triunfador son las tres cosas más importantes en un jugador de fútbol. ",
+      "El miedo no tiene espacio en el campo de juego. ",
+      "El deporte te enseña a perder de manera digna y a ganar con humildad. ",
+      "No tienes que ser grande para empezar, pero tienes que empezar para ser grande. ",
+      "La victoria es el objetivo, pero la perseverancia en la lucha es el camino hacia la victoria. ",
+      "El deporte no es solo una carrera, sino una forma de vida. ",
+      "La vida es un juego, el deporte es serio. ",
+      "El deporte es la única verdad. ",
+      "En el deporte, como en la vida, la verdadera grandeza se encuentra en la simplicidad. ",
+      "El deporte es el reflejo de la vida misma. ",
+      "El éxito no es definitivo, el fracaso no es fatal: lo que cuenta es el valor para continuar. ",
+      "El deporte puede crear esperanza donde una vez solo había desesperación. ",
+      "No puedes dejar de caer si no te atreves a subir. ",
+      "En el deporte, cada día es una oportunidad para lograr algo nuevo. ",
+      "El carácter, la inteligencia y el espíritu triunfador son las tres cosas más importantes en un jugador de fútbol. ",
+      "El deporte no es solo un juego, es una forma de vida. ",
+      "No tienes que ser grande para empezar, pero tienes que empezar para ser grande. ",
+      "La victoria es mucho más dulce cuando sabes que has tenido que trabajar duro para lograrla. ",
+      "El deporte es el reflejo de la vida misma. ",
+      "El deporte no se trata de ser el mejor, sino de ser mejor de lo que eras ayer. ",
+      "El miedo no tiene espacio en el campo de juego. ",
+      "El esfuerzo constante y la determinación son las claves del éxito. ",
+      "El éxito no es definitivo, el fracaso no es fatal: lo que cuenta es el valor para continuar. ",
+      "En el deporte, como en la vida, la verdadera grandeza se encuentra en la simplicidad. ",
+      "El deporte no construye el carácter, lo revela. ",
+      "La vida es un juego, el deporte es serio. ",
+      "El deporte puede crear esperanza donde una vez solo había desesperación. ",
+      "En el deporte, cada día es una oportunidad para lograr algo nuevo. ",
+      "El sudor es la colcha de la victoria. ",
+      "El carácter, la inteligencia y el espíritu triunfador son las tres cosas más importantes en un jugador de fútbol. ",
+      "El deporte es una de las mejores escuelas de la vida. ",
+      "El deporte tiene el poder de cambiar el mundo. ",
+      "La victoria es el objetivo, pero la perseverancia en la lucha es el camino hacia la victoria. ",
+      "No sueñes tu vida, vive tu sueño. ",
+      "Soy un símbolo de que todo es posible si crees en ti mismo y trabajas duro. ",
+      "Gano dinero fácilmente, pero al final del día, mi objetivo es inspirar a las personas. ",
+      "La clave del éxito es trabajar duro, creer en ti mismo y nunca rendirte. ",
+      "Siempre trato de superarme a mí mismo, porque la competencia es dura y siempre hay que dar lo mejor de uno mismo. ",
+      "No nací con talento, mi talento se ha desarrollado a través del trabajo duro y la dedicación."
+    ];
+
+    let currentQuestion = 0;
+let correctAnswers = 0;
+let mistakes = 0;
+let totalQuestions;
+let currentQuestionIndex; // Variable para llevar un registro del índice de la pregunta actual
+
+function displayQuestion() {
+    if (currentQuestion < totalQuestions) {
+        currentQuestionIndex = Math.floor(Math.random() * totalQuestions);
+
+        if (currentQuestionIndex < messiPhrases.length) {
+            document.getElementById("question").textContent = messiPhrases[currentQuestionIndex];
+        } else {
+            document.getElementById("question").textContent = otherPhrases[currentQuestionIndex - messiPhrases.length];
+        }
+    } else {
+        document.getElementById("question").textContent = "Juego terminado. Respuestas correctas: " + correctAnswers + " de " + totalQuestions;
+    }
+}
+
+function guess(answer) {
+    if (currentQuestion < totalQuestions && mistakes < 1) {
+        const currentQuestionIsMessi = currentQuestionIndex < messiPhrases.length;
+
+        if ((answer === "Messi" && currentQuestionIsMessi) || (answer === "No Messi" && !currentQuestionIsMessi)) {
+            correctAnswers++;
+            document.getElementById("result").textContent = "¡Correcto!";
+        } else {
+            mistakes++;
+            document.getElementById("result").textContent = "Incorrecto. La respuesta correcta es: " + (currentQuestionIsMessi ? "Messi" : "No Messi");
+        }
+
+        currentQuestion++;
+
+        if (mistakes >= 1 || currentQuestion >= totalQuestions) {
+            document.getElementById("question").textContent = "Juego terminado. Respuestas correctas: " + correctAnswers + " de " + totalQuestions;
+            mistakes = 0;
+        } else {
+            displayQuestion();
+        }
+    }
+}
+
+totalQuestions = messiPhrases.length + otherPhrases.length;
+displayQuestion();
+  </script>
+  <script src="nomessi.js"></script>
+   <!--recargar pagina-->
+  <script>
+    alert("¡Hola! ¡Ve cuántas respuestas has acertado y supera tu récord!");
+    
+document.getElementById("recargarPagina").addEventListener("click", function() {
+    location.reload();
+});
+  </script>
+  
+  
+</body>
+
+</html>
